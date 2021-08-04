@@ -1,22 +1,19 @@
 import { Modal, Button ,Form,Input} from 'antd';
 import { useState } from 'react';
-
-const Create = () => {
+import { nanoid } from 'nanoid'
+import {PlusSquareFilled} from '@ant-design/icons'
+import SelectBox from './Select'
+const Create = ({onAdd}) => {
     const [form] = Form.useForm();
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
-    const [name,setName] = useState('')
     const url = 'https://api.todoist.com/rest/v1/projects'
     const showModal = () => {
       setVisible(true);
     };
     const handleOk = async () => {
-        setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
         form.submit()
-        
-   
       };
     
       const handleCancel = () => {
@@ -24,38 +21,42 @@ const Create = () => {
         setVisible(false);
       };
       const onFinish =(values)=>{
-       // setName(values.name)
+        console.log(values)
        const name = values.name
-    //    if(name!==''){
-    //     const formdata = new FormData()
-    //     console.log("my name ",name)
-    //     formdata.append('name',name)
-    //     const reqOptions = {
-    //         method :"POST",
-    //         "Content-Type": "application/json",
-    //         headers:{
-    //           Authorization : 'Bearer 21b9ac4155a319b70c242b214bf710c0b282018a'
-    //         },
-    //         body : '{"name": "Shopping List"}' 
-    //       }
-    //       fetch(url,reqOptions)
-    //       .then((response)=>{
-    //         setVisible(false);
-    //         setConfirmLoading(false);
-    //         console.log("reso",response)
-    //         return response.json()
-    //       })
-    //       .then((result)=>{
-           
-    //         console.log(result)
-    //       })
-    //     }
+       if(name!==''){
+        const obj = {name :name}
+        const reqOptions = {
+            method :"POST",
+
+            headers:{
+              "Content-Type": "application/json",
+              'X-Request-Id' : nanoid(),
+              Authorization : 'Bearer 21b9ac4155a319b70c242b214bf710c0b282018a'
+            },
+            body : JSON.stringify(obj)
+          }
+          fetch(url,reqOptions)
+          .then((response)=>{
+            setVisible(false);
+            setConfirmLoading(false);
+            console.log("reso",response)
+            return response.json()
+          })
+          .then((result)=>{
+            form.resetFields()
+            onAdd(result)
+            console.log(result)
+          })
+        }
       }
     return (
        <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal with async logic
+       <div className="button-div">
+       <Button type="primary" onClick={showModal}>
+        <PlusSquareFilled/>
       </Button>
+       </div>
+     
       <Modal
         title="Add Project"
         visible={visible}
@@ -78,7 +79,6 @@ const Create = () => {
         >
           <Input />
         </Form.Item>
-       
       </Form>
       </Modal>
        </>
