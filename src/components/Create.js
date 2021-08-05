@@ -1,13 +1,12 @@
 import { Modal, Button ,Form,Input} from 'antd';
 import { useState } from 'react';
-import { nanoid } from 'nanoid'
+//import { nanoid } from 'nanoid'
 import {PlusSquareFilled} from '@ant-design/icons'
-import SelectBox from './Select'
 const Create = ({onAdd}) => {
     const [form] = Form.useForm();
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const url = 'https://api.todoist.com/rest/v1/projects'
+    const url = 'https://todoistmtblue.herokuapp.com/projects'
     const showModal = () => {
       setVisible(true);
     };
@@ -21,31 +20,28 @@ const Create = ({onAdd}) => {
         setVisible(false);
       };
       const onFinish =(values)=>{
-        console.log(values)
+      console.log(values)
        const name = values.name
        if(name!==''){
-        const obj = {name :name}
         const reqOptions = {
             method :"POST",
 
             headers:{
               "Content-Type": "application/json",
-              'X-Request-Id' : nanoid(),
-              Authorization : 'Bearer 21b9ac4155a319b70c242b214bf710c0b282018a'
+              // 'X-Request-Id' : nanoid(),
+              // Authorization : 'Bearer 21b9ac4155a319b70c242b214bf710c0b282018a'
             },
-            body : JSON.stringify(obj)
+            body :JSON.stringify (values)
           }
           fetch(url,reqOptions)
           .then((response)=>{
             setVisible(false);
             setConfirmLoading(false);
-            console.log("reso",response)
             return response.json()
           })
           .then((result)=>{
             form.resetFields()
-            onAdd(result)
-            console.log(result)
+            onAdd(result.project)
           })
         }
       }
@@ -64,9 +60,6 @@ const Create = ({onAdd}) => {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
- 
-        {/* <p>{modalText}</p> */}
-
         <Form form={form} layout="vertical" name="userForm" onFinish={onFinish}>
         <Form.Item
           name="name"
