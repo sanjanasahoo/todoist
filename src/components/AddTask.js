@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Button } from 'antd';
-import {addTask} from '../api'
 import { useRouteMatch } from 'react-router-dom';
 const AddTask = ({onAddTask}) => {
     const [toggleAdd,setToggleAdd] = useState(false)
@@ -13,9 +12,26 @@ const AddTask = ({onAddTask}) => {
             content:taskdata.content,
             project_id :parseInt(params.projectId)
         }
-        const newTask =  addTask(taskBody)
-        onAddTask(newTask)
-        setToggleAdd((toggleAdd)=> !toggleAdd)
+        const url = 'https://todoistmtblue.herokuapp.com/tasks'
+        const reqOptions = {
+            method :"POST",
+    
+            headers:{
+              "Content-Type": "application/json",
+            },
+            body :JSON.stringify (taskBody)
+          }
+    
+        fetch(url,reqOptions)
+      .then((response)=>{
+        return response.json()
+      })
+      .then((result)=>{
+         console.log("result is ",result)
+         onAddTask(result.task)
+         setToggleAdd((toggleAdd)=> !toggleAdd)
+
+      })
     }
     return (
         <div className="addTaskDiv">

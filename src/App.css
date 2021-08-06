@@ -47,9 +47,11 @@
     display: flex;
     width: 45%;
     justify-content: space-between;
+    align-items: center;
 }
 .taskList{
     display: flex;
+    align-items: center;
 }
 .ant-menu-title-content{
     display: flex;

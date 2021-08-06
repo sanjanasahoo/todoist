@@ -10,6 +10,8 @@ const Task = ({projects}) => {
   const project = projects&& projects.filter((prj)=>(prj.id==params.projectId))[0]
   const [taskId, setTaskId] = useState(params.projectId)
   function onAddTask(task){
+    mutate()
+
   }
   const fetcher = (url) =>
     axios
@@ -20,14 +22,13 @@ const Task = ({projects}) => {
         // }
       })
       .then((res) => res.data)
-  const { data, error } = useSWR('https://todoistmtblue.herokuapp.com/tasks', fetcher)
+  const { data,mutate, error } = useSWR('https://todoistmtblue.herokuapp.com/tasks', fetcher)
   useEffect(() => {
     setTaskId(+params.projectId)
   }, [params.projectId])
-
+ 
   if (!data) return (<div>Loading..</div>)
   if (error) return (<div>Error</div>)
-  //setTasks(data)
   console.log("id ", taskId)
   console.log(data)
   return (
@@ -36,7 +37,7 @@ const Task = ({projects}) => {
         <h1>{project.name}</h1>
         {data.filter((task) => task.project_id === (taskId))
           .map((task) => (
-            <div class="singleTask">
+            <div className="singleTask">
             <div className="taskList" key={task.id}>
               <PlusCircleTwoTone className="newButtonDiv"/>
               <div>{task.content}</div>

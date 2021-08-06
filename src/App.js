@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Create from './components/Create';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header';
 import Task from './components/Task'
 function App() {
