@@ -30,7 +30,6 @@ function App() {
         setData(result)
         // setTaskId(result[1].id)
       })
-
       .finally(() => {
         setLoading(false)
       })
@@ -46,7 +45,6 @@ function App() {
       })
         .then((response) => {
           console.log("i m response status", response.status)
-          if (response.status === 204) console.log("item delteed")
           setData((data) => data.filter(item => item.id !== id))
           setId(null)
         })
@@ -63,10 +61,10 @@ function App() {
       <Route path='/project'>
 
         <Header />
-        <div id="main">
         <Create onAdd={onAdd} />
+        <div id="main">
         <Sidebar list={data} onDelete={onDelete} />
-        <Route path='/project/:projectId'><Task/></Route>
+        <Route path='/project/:projectId'><Task projects={data}/></Route>
         </div>
       </Route>
 

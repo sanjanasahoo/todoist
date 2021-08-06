@@ -1,4 +1,19 @@
 @import '~antd/dist/antd.css';
+/* resets */
+
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus{
+  border:none;
+  outline:none;
+}
+/* resets */
+/* [contenteditable="true"]:hover::before,
+[contenteditable="true"]:focus::before{
+content:"Edit Me!";
+} */
+/* [contenteditable="true"]:focus > style {
+    display:block;
+    } */
 .button-div{
     display: flex;
     width: 280px;
@@ -8,4 +23,29 @@
 .delete-div{
     display: flex;
     align-items: center;
+}
+#main{
+    display: flex;
+}
+.task{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    padding: 20px;
+    width: 100%;
+}
+.newButtonDiv{
+    padding: 10px;
+}
+.primaryBtn{
+    background-color: brown;
+}
+.bordered-div{
+    border: 1px solid black;
+    padding: 20px;
+    width: 70%;
+
+}
+.addTaskDiv{
+    width: 100%;
 }

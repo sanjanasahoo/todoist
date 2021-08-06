@@ -10,12 +10,10 @@ const { SubMenu } = Menu;
 export default function Sidebar({ list ,onDelete}) {
     const [collapsed, setcollapse] = useState(false)
     const [projects,updateProject] = useState(list)
-    const {url,params} = useRouteMatch()
-    console.log(params)
+    const {url} = useRouteMatch()
     function handleClick(e){
         console.log(e)
         console.log(e.item,"===",e.key)
-        
     }
     function handleDelete(id){
         console.log(id)
@@ -44,7 +42,7 @@ export default function Sidebar({ list ,onDelete}) {
                     <Menu.Item key={item.id} icon={<PlusSquareFilled style ={{color:'#b8256f'}}/>}>
                         <Link to={`${url}/${item.id}`}>{item.name}</Link>
                         <Tooltip title="delete" >
-                        <Button type="primary" shape="circle" onClick={()=>handleDelete(item.id)} style={{width:12.5}} icon={<DeleteFilled />} />
+                        <Button type="primary" shape="circle" onClick={()=>handleDelete(item.name)} style={{width:12.5}} icon={<DeleteFilled />} />
                     </Tooltip>
                     </Menu.Item>
                    
