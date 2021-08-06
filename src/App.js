@@ -61,9 +61,8 @@ function App() {
       <Route path='/project'>
 
         <Header />
-        <Create onAdd={onAdd} />
         <div id="main">
-        <Sidebar list={data} onDelete={onDelete} />
+        <Sidebar list={data} onDelete={onDelete} onAdd={onAdd}/>
         <Route path='/project/:projectId'><Task projects={data}/></Route>
         </div>
       </Route>

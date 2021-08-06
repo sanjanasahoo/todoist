@@ -1,7 +1,6 @@
-import { Modal, Button ,Form,Input} from 'antd';
+import { Modal, Button ,Form,Input, Tooltip} from 'antd';
 import { useState } from 'react';
 //import { nanoid } from 'nanoid'
-import {PlusSquareFilled} from '@ant-design/icons'
 const Create = ({onAdd}) => {
     const [form] = Form.useForm();
     const [visible, setVisible] = useState(false);
@@ -48,9 +47,11 @@ const Create = ({onAdd}) => {
     return (
        <>
        <div className="button-div">
-       <Button type="primary" onClick={showModal}>
-        <PlusSquareFilled/>
+         <Tooltip title="Add">
+       <Button onClick={showModal} size="small">
+         +
       </Button>
+      </Tooltip>
        </div>
      
       <Modal

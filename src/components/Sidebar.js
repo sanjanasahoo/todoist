@@ -6,8 +6,9 @@ import {
 } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import Create from './Create';
 const { SubMenu } = Menu;
-export default function Sidebar({ list ,onDelete}) {
+export default function Sidebar({ list ,onDelete,onAdd}) {
     const [collapsed, setcollapse] = useState(false)
     const [projects,updateProject] = useState(list)
     const {url} = useRouteMatch()
@@ -33,7 +34,9 @@ export default function Sidebar({ list ,onDelete}) {
                 inlineCollapsed={collapsed}
                 onClick={handleClick}
             >
-                <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">                
+                <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">   
+                <Create onAdd={onAdd} />
+             
                 {projects&&projects
                 .filter(item=>item.name!=="Inbox")
                 .map((item) => {

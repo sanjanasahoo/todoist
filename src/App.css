@@ -9,10 +9,11 @@
 /* resets */
 
 .button-div{
-    display: flex;
-    width: 280px;
+    display: inline-block;
+    width: 250px;
     justify-content: flex-end;
     padding: 10px;
+    text-align: right;
 }
 .delete-div{
     display: flex;
