@@ -10,12 +10,12 @@ const AddTask = ({onAddTask}) => {
          e.preventDefault()
         let taskBody = {
             content:taskdata.content,
+            description:taskdata.desc,
             project_id :parseInt(params.projectId)
         }
         const url = 'https://todoistmtblue.herokuapp.com/tasks'
         const reqOptions = {
             method :"POST",
-    
             headers:{
               "Content-Type": "application/json",
             },
@@ -30,8 +30,8 @@ const AddTask = ({onAddTask}) => {
          console.log("result is ",result)
          onAddTask(result.task)
          setToggleAdd((toggleAdd)=> !toggleAdd)
-
-      })
+         setTaskData({...taskdata,content:'',desc:''})    
+        })
     }
     return (
         <div className="addTaskDiv">
@@ -44,9 +44,9 @@ const AddTask = ({onAddTask}) => {
             Add Task
             </div>
             <div className="bordered-div"style={{display:toggleAdd?'inline-block':'none'}}>
-                Content:<div contentEditable="true" value ={taskdata.content} onInput={(e)=>{
-                    setTaskData({...taskdata,content:e.target.innerText})}}></div>
-                Description:<div contentEditable="true" value ={taskdata.desc} onInput={(e)=>setTaskData({...taskdata,desc:e.target.innerText})}></div>
+                Content:<input contentEditable="true" value ={taskdata.content} onChange={(e)=>{
+                    setTaskData({...taskdata,content:e.target.value})}}></input>
+                Description:<input contentEditable="true" value ={taskdata.desc} onChange={(e)=>setTaskData({...taskdata,desc:e.target.value})}></input>
                 <div className ="newButtonDiv" > 
                 <Button type="primary" onClick={handleClick} disabled={taskdata.content===''} className="primaryBtn">Add</Button>
                 <Button onClick={()=>{setToggleAdd(false)}} >Cancel</Button>

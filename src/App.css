@@ -6,6 +6,9 @@
   border:none;
   outline:none;
 }
+input{
+    border: none;
+}
 /* resets */
 
 .button-div{

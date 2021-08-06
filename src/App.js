@@ -1,34 +1,41 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
-import Create from './components/Create';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, useHistory ,Redirect} from 'react-router-dom'
 import Header from './components/Header';
 import Task from './components/Task'
 function App() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [id, setId] = useState(null)
+  const [editPrj,setPrjEdit] = useState(false)
   function onDelete(id) {
     setId(id)
   }
   function onAdd(item) {
     setData([...data, item])
   }
-
-  useEffect(() => {
-    fetch('https://todoistmtblue.herokuapp.com/projects', {
+ 
+useEffect(()=>{
+  fetch('https://todoistmtblue.herokuapp.com/projects', {
       method: "GET",
-      // headers:{
-      //   Authorization : 'Bearer 21b9ac4155a319b70c242b214bf710c0b282018a'
-      // }
     })
       .then((response) => {
         return response.json()
       })
       .then((result) => {
         setData(result)
-        // setTaskId(result[1].id)
+      })
+},[editPrj])
+  useEffect(() => {
+    fetch('https://todoistmtblue.herokuapp.com/projects', {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((result) => {
+        setData(result)
       })
       .finally(() => {
         setLoading(false)
@@ -39,9 +46,6 @@ function App() {
       console.log("id to deltee", id)
       fetch(`https://todoistmtblue.herokuapp.com/projects/${id}`, {
         method: "DELETE",
-        // headers:{
-        //   Authorization : 'Bearer 21b9ac4155a319b70c242b214bf710c0b282018a'
-        // }
       })
         .then((response) => {
           console.log("i m response status", response.status)
@@ -63,10 +67,11 @@ function App() {
         <Header />
         <div id="main">
         <Sidebar list={data} onDelete={onDelete} onAdd={onAdd}/>
-        <Route path='/project/:projectId'><Task projects={data}/></Route>
+        <Route path='/project/:projectId'><Task projects={data} onProjectEdit={()=>setPrjEdit(!editPrj)}/></Route>
+        {id&&<Redirect to ='/project'/>}
+
         </div>
       </Route>
-
     </Router>
   );
 }
