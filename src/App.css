@@ -7,13 +7,7 @@
   outline:none;
 }
 /* resets */
-/* [contenteditable="true"]:hover::before,
-[contenteditable="true"]:focus::before{
-content:"Edit Me!";
-} */
-/* [contenteditable="true"]:focus > style {
-    display:block;
-    } */
+
 .button-div{
     display: flex;
     width: 280px;
@@ -48,4 +42,17 @@ content:"Edit Me!";
 }
 .addTaskDiv{
     width: 100%;
+}
+.singleTask{
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+}
+.taskList{
+    display: flex;
+}
+.ant-menu-title-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

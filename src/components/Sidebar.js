@@ -33,16 +33,18 @@ export default function Sidebar({ list ,onDelete}) {
                 inlineCollapsed={collapsed}
                 onClick={handleClick}
             >
-                <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">
+                <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">                
                 {projects&&projects
                 .filter(item=>item.name!=="Inbox")
                 .map((item) => {
                     return(
                     
-                    <Menu.Item key={item.id} icon={<PlusSquareFilled style ={{color:'#b8256f'}}/>}>
+                    <Menu.Item key={item.id} icon={<PlusSquareFilled style ={{color:'#b8256f'}}/> }>
                         <Link to={`${url}/${item.id}`}>{item.name}</Link>
                         <Tooltip title="delete" >
-                        <Button type="primary" shape="circle" onClick={()=>handleDelete(item.name)} style={{width:12.5}} icon={<DeleteFilled />} />
+                        <Button size="small" shape="circle" onClick={()=>handleDelete(item.id)}  >
+                       X
+                        </Button> 
                     </Tooltip>
                     </Menu.Item>
                    

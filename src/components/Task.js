@@ -4,6 +4,7 @@ import useSWR, { mutate } from 'swr'
 import axios from 'axios'
 import AddTask from './AddTask'
 import { PlusCircleTwoTone } from '@ant-design/icons'
+import { Button } from 'antd'
 const Task = ({projects}) => {
   const { params } = useRouteMatch()
   const project = projects&& projects.filter((prj)=>(prj.id==params.projectId))[0]
@@ -35,9 +36,12 @@ const Task = ({projects}) => {
         <h1>{project.name}</h1>
         {data.filter((task) => task.project_id === (taskId))
           .map((task) => (
+            <div class="singleTask">
             <div className="taskList" key={task.id}>
               <PlusCircleTwoTone className="newButtonDiv"/>
-              {task.content}
+              <div>{task.content}</div>
+            </div>
+            <div><Button shape="square" size="small">X</Button></div>
             </div>
           ))
         }
