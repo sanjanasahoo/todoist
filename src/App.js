@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
-import { BrowserRouter as Router, Route, useHistory ,Redirect} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import Header from './components/Header';
 import Task from './components/Task'
 function App() {

@@ -1,6 +1,5 @@
 import { Menu, Button ,Tooltip} from 'antd';
 import {
-    DeleteFilled,
     MailOutlined,
     PlusSquareFilled
 } from '@ant-design/icons';
@@ -9,7 +8,6 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import Create from './Create';
 const { SubMenu } = Menu;
 export default function Sidebar({ list ,onDelete,onAdd}) {
-    const [collapsed, setcollapse] = useState(false)
     const [projects,updateProject] = useState(list)
     const {url} = useRouteMatch()
     function handleClick(e){
@@ -31,7 +29,7 @@ export default function Sidebar({ list ,onDelete,onAdd}) {
                 defaultOpenKeys={['sub1']}
                 mode="inline"
                 theme="light"
-                inlineCollapsed={collapsed}
+                inlineCollapsed={false}
                 onClick={handleClick}
             >
                 <SubMenu key="sub1" icon={<MailOutlined />} title="Projects" >   

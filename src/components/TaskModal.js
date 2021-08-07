@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Redirect, useRouteMatch } from 'react-router-dom'
-import { Modal, Button ,Form,Input, Tooltip} from 'antd';
+import {  useRouteMatch } from 'react-router-dom'
+import { Modal, Button } from 'antd';
 import axios from 'axios';
 
 const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit,setRedirect}) => {
@@ -10,7 +10,6 @@ const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit,setRedirect
     const [edit,setEdit]= useState(false)
     const [content,setContent] = useState(currentTask.content)
     const [desc,setDesc] = useState(currentTask.description)
-    const [confirmLoading, setConfirmLoading] = useState(false);
     function handleOk(){
 
     }
@@ -37,7 +36,7 @@ const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit,setRedirect
         title={project.name}
         visible={showModal}
         onOk={handleOk}
-        confirmLoading={confirmLoading}
+        confirmLoading={false}
         onCancel={handleCancel}
         okButtonProps={{ style: {display:'none'} }}
         cancelButtonProps={{ style: {display:'none'} }}

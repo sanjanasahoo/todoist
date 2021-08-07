@@ -3,10 +3,8 @@ import { Link, useRouteMatch, Route, Redirect } from 'react-router-dom'
 import useSWR from 'swr'
 import axios from 'axios'
 import AddTask from './AddTask'
-import { PlusCircleTwoTone } from '@ant-design/icons'
 import { Button } from 'antd'
 import TaskModal from './TaskModal'
-import Checkbox from 'antd/lib/checkbox/Checkbox'
 const Task = ({ projects, onProjectEdit }) => {
   const { params } = useRouteMatch()
   console.log(params)
