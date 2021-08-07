@@ -6,6 +6,7 @@ import AddTask from './AddTask'
 import { PlusCircleTwoTone } from '@ant-design/icons'
 import { Button } from 'antd'
 import TaskModal from './TaskModal'
+import Checkbox from 'antd/lib/checkbox/Checkbox'
 const Task = ({ projects, onProjectEdit }) => {
   const { params } = useRouteMatch()
   console.log(params)
@@ -14,6 +15,8 @@ const Task = ({ projects, onProjectEdit }) => {
   const [showModal, setShowModal] = useState(false)
   const [edit, setEdit] = useState(false)
   const [editedProject, setEdited] = useState('')
+  const [redirect,setRedirect] =useState(false)
+
   const { url } = useRouteMatch()
 
   function onAddTask(task) {
@@ -21,6 +24,14 @@ const Task = ({ projects, onProjectEdit }) => {
   }
   function onTaskEdit() {
     mutate()
+  }
+  function handleCheck(e){
+   if(e.target.checked) {
+     console.log(e.target.parentNode)
+     e.target.parentNode.style.textDecoration = 'line-through'
+   }
+   else  e.target.parentNode.style.textDecoration = 'none'
+
   }
   async function handleSave(e) {
     e.preventDefault()
@@ -77,8 +88,10 @@ const Task = ({ projects, onProjectEdit }) => {
         .map((task) => (
           <div className="singleTask">
             <div className="taskList" key={task.id}>
-              <PlusCircleTwoTone className="newButtonDiv" />
-              <div onClick={() => setShowModal(true)}><Link to={`${url}/task/${task.id}`}>{task.content}</Link></div>
+              <input type="checkbox" className="newButtonDiv" onChange={handleCheck}></input>
+              <div  className="singleTaskDiv" onClick={() => setShowModal(true)}><Link to={`${url}/task/${task.id}`}>{task.content}</Link></div>
+            
+              {/* <PlusCircleTwoTone className="newButtonDiv" /> */}
             </div>
             <div><Button shape="square" size="small" onClick={(e) => handleDelete(e, task.id)}>X</Button></div>
           </div>
@@ -88,8 +101,10 @@ const Task = ({ projects, onProjectEdit }) => {
       <AddTask id={params} onAddTask={onAddTask} />
       <Route path='/project/:projectId/task/:taskId'>
         {showModal && <TaskModal showModal={showModal} projects={projects} tasks={data} setShowModal={setShowModal}
-          onTaskEdit={onTaskEdit} />}
+          onTaskEdit={onTaskEdit} setRedirect={setRedirect} />}
       </Route>
+      {!showModal&&redirect&&<Redirect to ={`/project/${params.projectId}`}/>}
+
     </div>
 
   )

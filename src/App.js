@@ -62,6 +62,9 @@ useEffect(()=>{
   console.log(data)
   return (
     <Router>
+      <Route path='/'>
+        <Redirect to= '/project'/>
+      </Route>
       <Route path='/project'>
 
         <Header />

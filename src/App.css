@@ -10,7 +10,16 @@ input{
     border: none;
 }
 /* resets */
-
+.header{
+    background: rgb(219, 76, 63);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#main{
+    font-family: monospace;
+}
 .button-div{
     display: inline-block;
     width: 250px;
@@ -32,20 +41,26 @@ input{
     padding: 20px;
     width: 100%;
 }
-.newButtonDiv{
+.newButtonDiv,.buttonText{
     padding: 10px;
 }
-.primaryBtn{
-    background-color: brown;
+#primaryBtn{
+    background-color: rgb(219, 76, 63);
+    color: black;
+}
+#primaryBtn:focus:hover{
+    background:rgb(228, 81, 67) !important;
 }
 .bordered-div{
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    border-radius: 10px;
     padding: 20px;
     width: 70%;
 
 }
 .addTaskDiv{
     width: 100%;
+    margin-top: 10px;
 }
 .singleTask{
     display: flex;
@@ -61,4 +76,37 @@ input{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.heading{
+    font-weight: bold;
+}
+.singleTaskDiv{
+    padding: 10px;
+    color: inherit;
+}
+a{
+    color:inherit
+}
+.ant-btn:hover {
+    background: lightgray;
+}
+.toggleButton{
+    background: transparent;
+    
+}
+.modalInputDiv{
+    display: block;
+}
+.ant-modal-header{
+    background-color: #fafafa;
+    border-bottom: 1px solid #ddd;
+}
+.ant-modal-title{
+    font-weight: bold;
+    font-size: medium;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.ant-page-header-heading-sub-title{
+    color: black;
 }

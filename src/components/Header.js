@@ -2,7 +2,7 @@ import { Affix,PageHeader } from 'antd';
 
 export default function Header() {
     return (
-        <Affix offsetTop={10} style={{ background: '#db4c3f' }}>
+        <Affix  className="header">
             <PageHeader
                 className="site-page-header"
                 title="Home"

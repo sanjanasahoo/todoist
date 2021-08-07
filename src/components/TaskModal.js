@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useRouteMatch } from 'react-router-dom'
+import { Redirect, useRouteMatch } from 'react-router-dom'
 import { Modal, Button ,Form,Input, Tooltip} from 'antd';
 import axios from 'axios';
 
-const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit}) => {
+const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit,setRedirect}) => {
     const { params } = useRouteMatch()
     const project = projects&& projects.filter((prj)=>(prj.id===parseInt(params.projectId)))[0]
     const currentTask = tasks&& tasks.filter((task)=>(task.id===parseInt(params.taskId)))[0]
@@ -16,6 +16,7 @@ const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit}) => {
     }
     function handleCancel(){
         setShowModal(false);
+        setRedirect(true)
     }
     async function handleSave(e){
         e.preventDefault()
@@ -38,22 +39,30 @@ const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit}) => {
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
+        okButtonProps={{ style: {display:'none'} }}
+        cancelButtonProps={{ style: {display:'none'} }}
       >
-          <div>
+          
           <input  onClick={()=>setEdit(true)} 
             contentEditable={edit}
             onChange ={(e)=>setContent(e.target.value)}
             defaultValue ={content}
+            className ="modalInputDiv"
             >
          </input> 
          <input  onClick={()=>setEdit(true)} 
             contentEditable={edit}
             onChange ={(e)=>setDesc(e.target.value)}
             defaultValue ={desc}
+            className ="modalInputDiv"
+
            />
-            </div>
-          {edit&&<div><Button onClick={handleSave}>Save</Button><Button>Cancel</Button></div>}
+            
+          {edit&&<div><Button id ="primaryBtn"onClick={handleSave}>Save</Button>
+          <Button onClick={()=>setEdit(false)}>Cancel</Button></div>}
+
           </Modal>
+          
     )
 }
 

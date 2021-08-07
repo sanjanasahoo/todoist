@@ -34,8 +34,8 @@ export default function Sidebar({ list ,onDelete,onAdd}) {
                 inlineCollapsed={collapsed}
                 onClick={handleClick}
             >
-                <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">   
-                <Create onAdd={onAdd} />
+                <SubMenu key="sub1" icon={<MailOutlined />} title="Projects" >   
+                <Create onAdd={onAdd}  />
              
                 {projects&&projects
                 .filter(item=>item.name!=="Inbox")

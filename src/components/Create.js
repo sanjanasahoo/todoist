@@ -1,6 +1,5 @@
 import { Modal, Button ,Form,Input, Tooltip} from 'antd';
 import { useState } from 'react';
-//import { nanoid } from 'nanoid'
 const Create = ({onAdd}) => {
     const [form] = Form.useForm();
     const [visible, setVisible] = useState(false);
@@ -60,6 +59,7 @@ const Create = ({onAdd}) => {
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
+        bodyStyle={{fontWeight:'bold'}}
       >
         <Form form={form} layout="vertical" name="userForm" onFinish={onFinish}>
         <Form.Item

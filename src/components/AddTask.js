@@ -35,20 +35,26 @@ const AddTask = ({onAddTask}) => {
     }
     return (
         <div className="addTaskDiv">
-            <div className="newButtonDiv" style={{display:!toggleAdd?'inline-block':'none'}}>
-            <Button type="primary" shape="circle" size="small" onClick={(e)=>{
+            <div  style={{display:!toggleAdd?'inline-block':'none'}}>
+            <Button  shape="circle" size="small" onClick={(e)=>{
                 e.preventDefault()
-                setToggleAdd((toggleAdd)=> !toggleAdd)}}>
+                setToggleAdd((toggleAdd)=> !toggleAdd)}} className="toggleButton" >
                 +
             </Button>   
-            Add Task
+            <span className="buttonText">Add Task</span>
             </div>
             <div className="bordered-div"style={{display:toggleAdd?'inline-block':'none'}}>
-                Content:<input contentEditable="true" value ={taskdata.content} onChange={(e)=>{
-                    setTaskData({...taskdata,content:e.target.value})}}></input>
+                  <div className="modalInputDiv">
+                    Content:<input contentEditable="true" value ={taskdata.content} onChange={(e)=>{
+                    setTaskData({...taskdata,content:e.target.value})}}>
+                    </input>
+                  </div>
+                  <div className="modalInputDiv">
                 Description:<input contentEditable="true" value ={taskdata.desc} onChange={(e)=>setTaskData({...taskdata,desc:e.target.value})}></input>
+                </div >
+
                 <div className ="newButtonDiv" > 
-                <Button type="primary" onClick={handleClick} disabled={taskdata.content===''} className="primaryBtn">Add</Button>
+                <Button type="primary" onClick={handleClick} disabled={taskdata.content===''} id="primaryBtn">Add</Button>
                 <Button onClick={()=>{setToggleAdd(false)}} >Cancel</Button>
                 </div>
             </div>
