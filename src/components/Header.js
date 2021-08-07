@@ -1,4 +1,4 @@
-import { Affix,PageHeader } from 'antd';
+import { PageHeader } from 'antd';
 
 export default function Header() {
     return (
