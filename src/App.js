@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import Header from './components/Header';
 import Task from './components/Task'
+import { Empty } from 'antd';
 function App() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -70,6 +71,7 @@ useEffect(()=>{
         <Header />
         <div id="main">
         <Sidebar list={data} onDelete={onDelete} onAdd={onAdd}/>
+        <Route exact path='/project'><Empty description='Select a Project' className="emptyPage"/></Route>
         <Route path='/project/:projectId'><Task projects={data} onProjectEdit={()=>setPrjEdit(!editPrj)}/></Route>
         {id&&<Redirect to ='/project'/>}
 
