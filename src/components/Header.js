@@ -4,9 +4,10 @@ export default function Header() {
     return (
         <Affix  className="header">
             <PageHeader
-                className="site-page-header"
+                id="heading"
                 title="Home"
                 subTitle="Welcome to Todoist"
+
             />
         </Affix>
     )

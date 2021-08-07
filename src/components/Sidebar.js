@@ -23,7 +23,7 @@ export default function Sidebar({ list ,onDelete,onAdd}) {
         updateProject(list)
     },[list])
     return (
-        <div style={{ width: 256 }}>
+        <div style={{ width: 306 }}>
             <Menu
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
@@ -31,6 +31,7 @@ export default function Sidebar({ list ,onDelete,onAdd}) {
                 theme="light"
                 inlineCollapsed={false}
                 onClick={handleClick}
+                className="sidebar-menu"
             >
                 <SubMenu key="sub1" icon={<MailOutlined />} title="Projects" >   
                 <Create onAdd={onAdd}  />
