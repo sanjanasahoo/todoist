@@ -45,16 +45,16 @@ const AddTask = ({onAddTask}) => {
             </div>
             <div className="bordered-div"style={{display:toggleAdd?'inline-block':'none'}}>
                   <div className="modalInputDiv">
-                    Content:<input contentEditable="true" value ={taskdata.content} onChange={(e)=>{
+                    <input contentEditable="true" placeholder='Content' value ={taskdata.content} onChange={(e)=>{
                     setTaskData({...taskdata,content:e.target.value})}}>
                     </input>
                   </div>
                   <div className="modalInputDiv">
-                Description:<input contentEditable="true" value ={taskdata.desc} onChange={(e)=>setTaskData({...taskdata,desc:e.target.value})}></input>
+                <input contentEditable="true" placeholder='Description' value ={taskdata.desc} onChange={(e)=>setTaskData({...taskdata,desc:e.target.value})}></input>
                 </div >
 
                 <div className ="newButtonDiv" > 
-                <Button type="primary" onClick={handleClick} disabled={taskdata.content===''} id="primaryBtn">Add</Button>
+                <Button type="primary" onClick={handleClick} disabled={taskdata.content===''} className="primaryBtn">Add</Button>
                 <Button onClick={()=>{setToggleAdd(false)}} >Cancel</Button>
                 </div>
             </div>

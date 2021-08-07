@@ -47,6 +47,7 @@ const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit,setRedirect
             onChange ={(e)=>setContent(e.target.value)}
             defaultValue ={content}
             className ="modalInputDiv"
+            placeholder="Content"
             >
          </input> 
          <input  onClick={()=>setEdit(true)} 
@@ -54,10 +55,10 @@ const TaskModal = ({showModal,setShowModal,projects,tasks,onTaskEdit,setRedirect
             onChange ={(e)=>setDesc(e.target.value)}
             defaultValue ={desc}
             className ="modalInputDiv"
-
+            placeholder = 'description'
            />
             
-          {edit&&<div><Button id ="primaryBtn"onClick={handleSave}>Save</Button>
+          {edit&&<div><Button className ="primaryBtn"onClick={handleSave}>Save</Button>
           <Button onClick={()=>setEdit(false)}>Cancel</Button></div>}
 
           </Modal>

@@ -49,11 +49,11 @@ input{
 .newButtonDiv,.buttonText{
     padding: 10px;
 }
-#primaryBtn{
+.primaryBtn{
     background-color: rgb(219, 76, 63);
     color: black;
 }
-#primaryBtn:focus:hover{
+.primaryBtn:focus:hover{
     background:rgb(228, 81, 67) !important;
 }
 .bordered-div{

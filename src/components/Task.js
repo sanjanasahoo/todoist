@@ -80,7 +80,7 @@ const Task = ({ projects, onProjectEdit }) => {
       >
         {project && project.name}
       </h1>
-      {edit && <div><Button onClick={handleSave}>Save</Button>
+      {edit && <div><Button className="primaryBtn" onClick={handleSave}>Save</Button>
         <Button onClick={() => setEdit(false)}>Cancel</Button></div>}
       {data.filter((task) => task.project_id === (taskId))
         .map((task) => (

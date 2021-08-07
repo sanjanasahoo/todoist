@@ -2,7 +2,7 @@ import { Affix,PageHeader } from 'antd';
 
 export default function Header() {
     return (
-        <Affix  className="header">
+        <Affix  className="header" >
             <PageHeader
                 id="heading"
                 title="Home"
